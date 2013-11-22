@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quiz Time</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		var allQuestions = [	{question: "Which instrument is used to measure pressure?", 
+								choices: ["Saccharimeter", "Ammeter", "Manometer", "Lactometer", "Wackometer"], correctAnswer:2},
+								{question: "Anna Pavlowa excelled in which of the following?", 
+								choices: ["Ballet", "Chess", "Painting", "Tennis", "Photography"], correctAnswer:0},
+								{question: "The crown of which New York City landmark was originally built as an airship dock?", 
+								choices: ["Chrysler Building", "Empire State Building", "Statue of Liberty", "Trump Tower", "Owls"], correctAnswer:1},
+								{question: "What is the old name for Sri Lanka?", 
+								choices: ["Spice Islands", "Mandalay", "Ceylon", "East Pakistan", "Thailand"], correctAnswer:2},
+								{question: "Countries from which continent boycotted the 1976 summer Olympics in Montreal?", 
+								choices: ["Europe", "Asia", "South America", "Australia", "Africa"], correctAnswer:4}],
+			q_index = -1,
+			c_index = 0,
+			score = 0;
+
+		var next = function(){		
+			if(!(q_index < 0)) checkAnswer();
+			q_index++;
+			console.log(q_index);
+			if(q_index > 4)
+			{
+				q_index = -1;
+				$("#question").html("");
+				$("#answers > label").each(function(){
+					$(this).text("");
+				});
+				$("#score").text("You answered " + score + " questions correctly.");
+				$("#next").one("click", function(){$("#score").text(""); score=0;});
+			}
+			else
+			{
+				setForm(q_index);		
+			}	
+			
+		};
+		var setForm = function(index)
+		{
+				$("#question").html(allQuestions[index].question);
+				$("#answers > label").each(function(){
+					$(this).text(allQuestions[index].choices[c_index]);
+					c_index++;
+			});
+			c_index = 0;
+		};
+		var checkAnswer = function()
+		{
+			if(parseInt($('form input[type=radio]:checked').val(), 10) == allQuestions[q_index].correctAnswer)
+			{
+				console.log("Checked: " + parseInt($('form input[type=radio]:checked').val(), 10));
+				console.log("Correct Answer: " + allQuestions[q_index].correctAnswer);
+				score++;
+				console.log("SCORE:" + score);
+			}
+		};
+		$(document).ready(function(){
+			next();
+			$("#next").bind("click", function(){
+				next();
+			});
+		});
+	</script>
+	<style>
+		input { display: inline-block;}
+		label { display: inline; }
+		#score { color: #ff0000;}
+	</style>
+<body>
+	<form>
+		<fieldset>
+			<legend>Quiz</legend>
+
+			<p>
+			<label for="question">Question:</label>
+			<div id="question"> </div>
+			</p>
+			<p>
+			<label for="answers">Answers:</label>          
+			<div id="answers">
+			<input type = "radio"
+					 name = "input"
+					 id = "i_0"
+					 value = 0
+					 checked = "checked">
+			</input>
+			<label for="i_0">
+				
+			0
+			</label>
+			<br>
+			<input type = "radio"
+					name = "input"
+					value = 1
+					id = "i_1">
+			</input>
+			<label for="i_1">
+
+			1
+			</label>	
+			<br>			
+			<input type = "radio"
+					name = "input"
+					value = 2
+					id = "i_2">
+			</input>
+			<label for="i_2">
+			2
+			</label>
+			<br>
+			<input type = "radio"
+					name = "input"
+					value = 3
+					id = "i_3">
+			</input>
+			<label for="i_3">
+			3
+			</label>
+			<br>
+			<input type = "radio"
+					name = "input"
+					value = 4
+					id = "i_4">
+			</input>
+
+			<label for="i_4">
+			4
+			</label>
+
+			</div>
+        </p> 
+		<p>
+		<input type="button" value="Next" id="next"></input>
+		</p>		
+		<div id="score">
+		
+		</div>
+      </fieldset>     
+    </form>
+
+</body>
+
+</head>
+</html>
