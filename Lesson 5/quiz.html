@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quiz Time</title>
+	<meta charset="utf-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="quiz.js"></script>
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<form>
+		<fieldset>
+    <legend>Quiz</legend>
+        <p>Question:</p>
+        <div id="question"></div>
+ 
+        <p>Answers:</p>
+        <div id="answers">
+            <input type="radio" name="input" id="i_0" value=0 checked="checked">
+            <label for="i_0"></label>
+            <br>
+            <input type="radio" name="input" value=1 id="i_1">
+            <label for="i_1"></label>
+            <br>
+            <input type="radio" name="input" value=2 id="i_2">
+            <label for="i_2"></label>
+            <br>
+            <input type="radio" name="input" value=3 id="i_3">
+            <label for="i_3"></label>
+            <br>
+            <input type="radio" name="input" value=4 id="i_4">
+            <label for="i_4"></label>
+        </div>
+
+
+        <input type="button" value="Back" id="back">
+        <input type="button" value="Next" id="next">
+
+    <div id="scoreWrapper">
+        <div id="score">
+             <h3>Final Score</h3>
+
+            <p id="userScore">0</p>
+            <input type="button" value="Again?" id="again">
+        </div>
+    </div>
+</fieldset>
+    </form>
+
+</body>
+</html>
