@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quiz Time</title>
+	<meta charset="utf-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="handlebars-v1.1.2.js"></script>
+	<script src="jquery.cookie.js"></script>
+	<script src="quiz.js"></script>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="signin.css" rel="stylesheet">
+</head>
+<body>
+<div class = "container-fluid">
+		<div class="row-fluid">
+			<div class="span4">
+			<h1>Quiz Time!</h1>
+			</div>
+			<div class="span8"><small id="welcome"></small>
+			<form class="form-inline"><button id="reset_storage" class="btn btn-inverse btn-mini">Reset storage <i class="icon-white icon-refresh"></i></button></form>
+			</div>
+		</div>
+			<div id="quiz"></div>
+			<script id="quiz-template" type="text/x-handlebars-template">
+			<div class="row-fluid">
+					<div class="span12 lead" id="question">{{question}}</div>
+			</div>
+			
+			 <div class="row-fluid">
+				<div class="span12" id="answers">
+					{{#each answers}}
+						<label class="radio">
+							<span id="radio-answer">{{answer}}</span>
+							<input type="radio" name="input" id="i_{{@key}}" value={{@key}} {{#if checked}} checked {{/if}}>
+						</label>
+					{{/each}}
+				</div>
+			</div>
+			</script>
+				<div class="span12">
+				<br>
+					<button id="back" class="btn btn-primary btn-large"><i class="icon-white icon-hand-left"></i> Back</button>
+					<button id="next" class="btn btn-primary btn-large">Next <i class="icon-white icon-hand-right"></i></button>
+				</div>
+			</div>
+	</div>
+</div>
+
+	<div id="score_container">
+		 <form class="form-notify">
+			<h2 class="form-signin-heading">Final Score</h2>
+			<p class="lead text-center" id="userScore">0</p>
+        <button id="again" class="btn btn-lg btn-primary btn-block">Play again</button>
+		</form>
+	</div>
+
+	<div id="login_container">
+		 <form class="form-signin">
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<p class="text-error" id="loginError"></p>
+			 <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+			  <input type="password" id="password" class="form-control" placeholder="Password" required>
+
+        <button  id="login" class="btn btn-lg btn-primary btn-block">Sign in</button>
+		</form>
+	</div>
+		
+</body>
+</html>
